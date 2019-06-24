@@ -37,6 +37,7 @@ $ python
 
 | Build Type      | Status |
 | ---             | ---    |
+|CII Best Practices|[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2928/badge)](https://bestpractices.coreinfrastructure.org/projects/2928)|
 | **Travis Linux**   | [![Build Status](https://travis-ci.com/baobab-group/Adansonia.svg?branch=master)](https://travis-ci.com/baobab-group/Adansonia) |
 
 
