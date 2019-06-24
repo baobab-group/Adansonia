@@ -36,7 +36,7 @@ class DaHoldingSender():
 
         self.service = build('gmail', 'v1', credentials=creds)
 
-    def sendEmail(self, to, subject, text, file=None):
+    def sendEmail(self, to, subject, text, attachment=None):
         message = MIMEMultipart()
         message['to'] = to
         message['from'] = 'daholding@baobab.bz'
@@ -44,11 +44,11 @@ class DaHoldingSender():
         body = MIMEText(text) # convert the body to a MIME compatible string
         message.attach(body)
 
-        if file is not None:
+        if attachment is not None:
             part = MIMEBase('application', "octet-stream")
-            part.set_payload(open(file, "rb").read())
+            part.set_payload(open(attachment, "rb").read())
             encoders.encode_base64(part)
-            part.add_header('Content-Disposition', 'attachment', filename=file)
+            part.add_header('Content-Disposition', 'attachment', filename=attachment)
             message.attach(part)
         
         raw = base64.urlsafe_b64encode(message.as_bytes())
