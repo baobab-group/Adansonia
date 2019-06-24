@@ -6,7 +6,7 @@ import pandas as pd
 
 def reduce_mem_usage(df):
     """ iterate through all the columns of a dataframe and modify the data type
-        to reduce memory usage.        
+        to reduce memory usage.
     """
     df = pd.DataFrame(df)
     start_mem = df.memory_usage().sum() / 1024**2
