@@ -12,6 +12,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import base64
 
+
 class DaHoldingSender():
     def __init__(self, tokenfile, credfile):
         SCOPES = ['https://www.googleapis.com/auth/gmail.compose']
@@ -41,16 +42,17 @@ class DaHoldingSender():
         message['to'] = to
         message['from'] = 'daholding@baobab.bz'
         message['subject'] = subject
-        body = MIMEText(text) # convert the body to a MIME compatible string
+        body = MIMEText(text)  # convert the body to a MIME compatible string
         message.attach(body)
 
         if attachment is not None:
             part = MIMEBase('application', "octet-stream")
             part.set_payload(open(attachment, "rb").read())
             encoders.encode_base64(part)
-            part.add_header('Content-Disposition', 'attachment', filename=attachment)
+            part.add_header(
+                'Content-Disposition', 'attachment', filename=attachment)
             message.attach(part)
-        
+
         raw = base64.urlsafe_b64encode(message.as_bytes())
         raw = raw.decode()
         self.service.users().messages().send(
