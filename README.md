@@ -1,7 +1,7 @@
 # Adansonia
 
 <div align="center">
-  <img src="https://fr.wikipedia.org/wiki/Adansonia#/media/Fichier:Adansonia_grandidieri04.jpg">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adansonia_grandidieri03.jpg/640px-Adansonia_grandidieri03.jpg">
 </div>
 
 
