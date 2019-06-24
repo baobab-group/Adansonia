@@ -37,11 +37,13 @@ $ python
 
 | Build Type      | Status |
 | ---             | ---    |
-|CII Best Practices|[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2928/badge)](https://bestpractices.coreinfrastructure.org/projects/2928)|
+|**CII Best Practices**|[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2928/badge)](https://bestpractices.coreinfrastructure.org/projects/2928)|
 | **Travis Linux**   | [![Build Status](https://travis-ci.com/baobab-group/Adansonia.svg?branch=master)](https://travis-ci.com/baobab-group/Adansonia) |
-
-
-
+|**CircleCi**||
+|**Codacy**||
+|**CodeCov**||
+|**CodeFactor**|[![CodeFactor](https://www.codefactor.io/repository/github/baobab-group/adansonia/badge)](https://www.codefactor.io/repository/github/baobab-group/adansonia)|
+|**Better Code Hub**||
 ## License
 
 [Apache License 2.0](LICENSE)
