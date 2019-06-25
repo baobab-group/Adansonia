@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="adansonia",
-    version="0.0.2",
+    version="0.0.4",
     author="mlabarrere",
     author_email="mlabarrere@baobab.bz",
     description="Utils package for common operations",
@@ -17,5 +17,9 @@ setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent", "Natural Language :: English"
+    ],
+    install_requires=[
+        'numpy', 'pandas', 'google-cloud-bigquery', 'google-api-python-client',
+        'google-auth-httplib2', 'google-auth-oauthlib', 'pyarrow'
     ],
 )

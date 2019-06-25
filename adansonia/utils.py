@@ -12,7 +12,7 @@ def reduce_mem_usage(df):
     start_mem = df.memory_usage().sum() / 1024**2
     print('Memory usage of dataframe is {:.2f} MB'.format(start_mem))
 
-    for col in df.columns:
+    for col in list(df.columns):
         col_type = df[col].dtype
 
         if col_type != object:

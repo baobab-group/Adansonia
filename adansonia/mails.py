@@ -3,19 +3,19 @@
 
 import pickle
 import os.path
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
+import base64
 from email.mime.base import MIMEBase
 from email import encoders
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import base64
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
 
 
 class DaHoldingSender():
     def __init__(self, tokenfile, credfile):
-        SCOPES = ['https://www.googleapis.com/auth/gmail.compose']
+        scopes = ['https://www.googleapis.com/auth/gmail.compose']
         creds = None
         # The file token.pickle stores the user's access and refresh tokens, and is
         # created automatically when the authorization flow completes for the first
@@ -29,7 +29,7 @@ class DaHoldingSender():
                 creds.refresh(Request())
             else:
                 flow = InstalledAppFlow.from_client_secrets_file(
-                    credfile, SCOPES)
+                    credfile, scopes)
                 creds = flow.run_local_server()
             # Save the credentials for the next run
             with open(tokenfile, 'wb') as token:
@@ -37,7 +37,7 @@ class DaHoldingSender():
 
         self.service = build('gmail', 'v1', credentials=creds)
 
-    def sendEmail(self, to, subject, text, attachment=None):
+    def send_email(self, to, subject, text, attachment=None):
         message = MIMEMultipart()
         message['to'] = to
         message['from'] = 'daholding@baobab.bz'
