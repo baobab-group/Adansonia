@@ -36,7 +36,7 @@ class BigQueryReader(Thread):
         return self._data
 
 
-class BigQueryWritter(Thread):
+class BigQueryWriter(Thread):
     def __init__(self, dataframe, project, dataset, table, if_exists,
                  api_key_path):
         """Object Configuration"""
