@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="adansonia",
-    version="0.0.5",
+    version="0.0.6",
     author="mlabarrere",
     author_email="mlabarrere@baobab.bz",
     description="Utils package for common operations",
