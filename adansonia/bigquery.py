@@ -1,6 +1,7 @@
 from threading import Thread
 from google.cloud import bigquery
 from google.oauth2.service_account import Credentials
+from utils import reduce_mem_usage
 
 
 class BigQueryReader(Thread):
@@ -29,7 +30,7 @@ class BigQueryReader(Thread):
 
     def run(self):
 
-        self._data = self._query_job.to_dataframe()
+        self._data = reduce_mem_usage(self._query_job.to_dataframe())
 
     @property
     def data(self):
@@ -60,7 +61,7 @@ class BigQueryWriter(Thread):
             _job_config.write_disposition = 'WRITE_EMPTY'
 
         self._query_job = _client.load_table_from_dataframe(
-            dataframe=dataframe,
+            dataframe=reduce_mem_usage(dataframe),
             destination=table_ref,
             project=project,
             job_config=_job_config)
