@@ -1,7 +1,7 @@
 from threading import Thread
 from google.cloud import bigquery
 from google.oauth2.service_account import Credentials
-from utils import reduce_mem_usage
+from adansonia.utils import reduce_mem_usage
 
 
 class BigQueryReader(Thread):
