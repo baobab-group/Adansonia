@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+import numpy as np
+import pandas as pd
+
+
 def reduce_mem_usage(df, verbose=False):
     """ iterate through all the columns of a dataframe and modify the data type
         to reduce memory usage.
