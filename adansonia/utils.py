@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-import numpy as np
-import pandas as pd
-
-
 def reduce_mem_usage(df, verbose=False):
     """ iterate through all the columns of a dataframe and modify the data type
         to reduce memory usage.
@@ -30,7 +24,7 @@ def reduce_mem_usage(df, verbose=False):
     for col in list(df.columns):
         col_type = df[col].dtype
 
-        if col_type != object:
+        if col_type == 'float64' or col_type == 'int64':
             c_min = df[col].min()
             c_max = df[col].max()
             if str(col_type)[:3] == 'int':
@@ -66,7 +60,7 @@ def reduce_mem_usage(df, verbose=False):
                     df[col] = df[col].astype(np.float32)
                 else:
                     df[col] = df[col].astype(np.float64)
-        else:
+        elif col_type == object:
             df[col] = df[col].astype('category')
 
     if verbose:
