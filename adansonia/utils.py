@@ -2,6 +2,9 @@
 # coding: utf-8
 import numpy as np
 import pandas as pd
+from subprocess import Popen
+from os.path import abspath
+
 
 
 def reduce_mem_usage(df, verbose=False):
@@ -75,3 +78,29 @@ def reduce_mem_usage(df, verbose=False):
         print('Decreased by {:.1f}%'.format(100 *
                                         (start_mem - end_mem) / start_mem))
     return df
+
+
+class scp_AWS(object):
+    def __init__(self, servername, key_file, username):
+        self.servername = servername
+        self.key_file = abspath(key_file)
+        self.username = username
+
+    def get(self, distant_file, destination):
+        p = Popen([
+            'scp',
+            '-i',
+            self.key_file,
+            self.username + '@' + self.servername + ':' + distant_file,
+            destination
+        ])
+        if p.wait() !=0:
+            raise Exception('Process failed')
+
+    def set(self, file, destination):
+        p = Popen([
+            'scp', '-i', self.key_file, file,
+            self.username + '@' + self.servername + ':' + destination
+        ])
+        if p.wait() !=0:
+            raise Exception('Process failed')
