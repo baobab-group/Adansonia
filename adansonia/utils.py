@@ -6,7 +6,6 @@ from subprocess import Popen
 from os.path import abspath
 
 
-
 def reduce_mem_usage(df, verbose=False):
     """ iterate through all the columns of a dataframe and modify the data type
         to reduce memory usage.
@@ -14,17 +13,17 @@ def reduce_mem_usage(df, verbose=False):
     df = pd.DataFrame(df)
 
     UINT8 = np.iinfo(np.uint8)
-    UINT16=np.iinfo(np.uint16)
-    UINT32=np.iinfo(np.uint32)
-    UINT64=np.iinfo(np.uint64)
+    UINT16 = np.iinfo(np.uint16)
+    UINT32 = np.iinfo(np.uint32)
+    UINT64 = np.iinfo(np.uint64)
 
-    INT8=np.iinfo(np.int8)
-    INT16=np.iinfo(np.int16)
-    INT32=np.iinfo(np.int32)
-    INT64=np.iinfo(np.int64)
+    INT8 = np.iinfo(np.int8)
+    INT16 = np.iinfo(np.int16)
+    INT32 = np.iinfo(np.int32)
+    INT64 = np.iinfo(np.int64)
 
-    FLOAT16=np.finfo(np.float16)
-    FLOAT32=np.finfo(np.float32)
+    FLOAT16 = np.finfo(np.float16)
+    FLOAT32 = np.finfo(np.float32)
 
     if verbose:
         start_mem = df.memory_usage().sum() / 1024**2
@@ -38,7 +37,7 @@ def reduce_mem_usage(df, verbose=False):
             c_max = df[col].max()
             if str(col_type)[:3] == 'int':
 
-            # Test Unsigned Integer
+                # Test Unsigned Integer
                 if c_min > UINT8.min and c_max < UINT8.max:
                     df[col] = df[col].astype(np.uint8)
 
@@ -61,7 +60,7 @@ def reduce_mem_usage(df, verbose=False):
                 elif c_min > INT64.min and c_max < INT64.max:
                     df[col] = df[col].astype(np.int64)
 
-            # Test Float   
+            # Test Float
             else:
                 if c_min > FLOAT16.min and c_max < FLOAT16.max:
                     df[col] = df[col].astype(np.float16)
@@ -76,7 +75,7 @@ def reduce_mem_usage(df, verbose=False):
         end_mem = df.memory_usage().sum() / 1024**2
         print('Memory usage after optimization is: {:.2f} MB'.format(end_mem))
         print('Decreased by {:.1f}%'.format(100 *
-                                        (start_mem - end_mem) / start_mem))
+                                            (start_mem - end_mem) / start_mem))
     return df
 
 
@@ -88,13 +87,11 @@ class scp_AWS(object):
 
     def get(self, distant_file, destination):
         p = Popen([
-            'scp',
-            '-i',
-            self.key_file,
+            'scp', '-i', self.key_file,
             self.username + '@' + self.servername + ':' + distant_file,
             destination
         ])
-        if p.wait() !=0:
+        if p.wait() != 0:
             raise Exception('Process failed')
 
     def set(self, file, destination):
@@ -102,5 +99,11 @@ class scp_AWS(object):
             'scp', '-i', self.key_file, file,
             self.username + '@' + self.servername + ':' + destination
         ])
-        if p.wait() !=0:
+        if p.wait() != 0:
             raise Exception('Process failed')
+
+
+def queryReader(table):
+    with open('queries/' + table + '.sql') as f:
+        content = f.read()
+    return content
